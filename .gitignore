@@ -1,0 +1,18 @@
+# Ignore built files
+/dist
+/out
+/lib
+
+# Ignore Node.js dependencies
+/node_modules
+
+# Ignore IDE/Editor files
+.idea
+.vscode
+
+# Ignore environment-specific files
+.env
+
+# Ignore TypeScript configuration
+tsconfig.json
+tsconfig.tsbuildinfo
