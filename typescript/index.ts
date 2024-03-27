@@ -1,35 +1,52 @@
-interface Shape {
-  area(): number;
-  perimeter(): number;
+//Encapsulation
+//Bank Account clas
+// Depositing
+//withdrawing
+// Balance - hidden - encapsulated
+
+class BankAccount {
+  private _balance: number;
+
+  constructor(initialBalance: number) {
+    this._balance = initialBalance;
+  }
+  // getter of the Balance of the Bank Account
+  public get balance(): number {
+    return this._balance;
+  }
+  // method Deposit Money
+  public deposit(amount: number): void {
+    if (amount < 0) {
+      console.log("Invalid Amount");
+      return;
+    }
+    this._balance += amount;
+    console.log(
+      amount,
+      "Added to your Account. Your new Balance is ",
+      this._balance
+    );
+  }
+  public withDraw(amount: number): void {
+    if (amount < 0) {
+      console.log("Invalid Amount");
+      return;
+    }
+    if (this._balance - amount <= 0) {
+      console.log("Insufficent Funds");
+      return;
+    }
+    this._balance -= amount;
+    console.log(
+      amount,
+      "Subtracted from your Account. Your new Balance is ",
+      this._balance
+    );
+  }
 }
 
-class Circle implements Shape {
-  constructor(private radius: number) {}
-  area(): number {
-    return Math.PI * this.radius * this.radius;
-  }
-  perimeter(): number {
-    return 2 * Math.PI * this.radius;
-  }
-}
+const myAccount = new BankAccount(4000);
 
-class Rectangle implements Shape {
-  constructor(private height: number, private width: number) {}
-
-  area(): number {
-    return this.width * this.height;
-  }
-  perimeter(): number {
-    return 2 * (this.width + this.height);
-  }
-}
-
-function calculateTotalArea(shape: Shape): number {
-  return shape.area();
-}
-
-let circle = new Circle(4);
-let rectangle = new Rectangle(4, 5);
-
-console.log("Total Area Of Circle", calculateTotalArea(circle));
-console.log("Total Area Of Rectangle", calculateTotalArea(rectangle));
+myAccount.deposit(2004);
+myAccount.withDraw(3310);
+console.log("Current Balance is", myAccount.balance);
